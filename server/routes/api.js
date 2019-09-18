@@ -33,7 +33,7 @@ router.get('/photo_data/:place', function(req,res){
         let link_photoRef = {photo_link:`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoRef[0].reference}&key=${apiKey}`}
         console.log(link_photoRef)
     
-        res.send(link_photoRef)
+        res.send(link_photoRef.photo_link)
     })
 
 })
