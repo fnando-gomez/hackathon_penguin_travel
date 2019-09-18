@@ -5,16 +5,18 @@ const mongoose = require ('mongoose')
 const path = require ('path')
 
 const app = express()
-const port = 4000
+const PORT = 4000
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended : false}))
 
-mongoose.connect('mongodb://localhost/CitiesDB',{useNewUrlParser:true})
+mongoose.connect('mongodb://localhost/CitiesDB',{useNewUrlParser:true, useUnifiedTopology: true })
 
 app.use(express.static(path.join(__dirname,'./dist')))
 app.use(express.static(path.join(__dirname,'./node_modules')))
 
 app.use('/',api)
 
-app.listen(port,()=>console.log(`running on ${port}`))
+
+app.get('/status', (req, res) => {res.send('Still alive')})
+app.listen(PORT,()=>console.log(`Running on port: ${PORT}`))
