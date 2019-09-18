@@ -6,7 +6,7 @@ const userSchema = new Schema({
     lastName: String,
     age: Number,
     location: {type:Schema.Types.ObjectId,ref:"location"},
-    trips: [{type:Schemama.Types.ObjectId,ref:"trip"}]
+    trips: [{type:Schema.Types.ObjectId,ref:"trip"}]
 })
 
 const User = mongoose.model("user",userSchema)
