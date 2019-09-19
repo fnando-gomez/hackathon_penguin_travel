@@ -2,6 +2,8 @@ body{
     background-image: url("https://bit.ly/2m1nkly");
     background-color: transparent;
     height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 #map {
