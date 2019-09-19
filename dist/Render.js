@@ -5,7 +5,6 @@ class Renderer {
         const template = Handlebars.compile(source)
         let newHTML = template({ Data })
         $(elm).append(newHTML)
-        console.log("renderData(Data):", Data)
     }
 }
 

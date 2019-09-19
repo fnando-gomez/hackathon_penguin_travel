@@ -1,7 +1,10 @@
 const express = require ('express')
 const router = express.Router()
 const request = require('request')
-const model = require('../models/models')
+const Location = require('../models/Location')
+const Pic = require('../models/Pic')
+const Trip = require('../models/Trip')
+const User = require('../models/User')
 const apiKey = 'AIzaSyDqAA2vF3xOOd_Pcy5SD4Du3MBmbUUAsUo'
 
 
@@ -16,23 +19,16 @@ router.get('/place/:placeName',function(req,res){
     })
 })
 
-router.get('/photo_data/:place', function(req,res){
-    const getdataPlace = function(place){
+router.get('/location/:place', function(req,res){
+    const getDataPlace = function(place){
         return `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${place}&inputtype=textquery&fields=photos,formatted_address,name&key=${apiKey}`
     }
-    request(getdataPlace(req.params.place), function(error, response, body){
+    request(getDataPlace(req.params.place), function(error, response, body){
         let placeData = JSON.parse(body).candidates
-        let photoRef = placeData.map (r =>{
-            return{
-                name: r.name,
-                reference: r.photos[0].photo_reference,
-            }
-        })
-    
-        let link_photoRef = {photo_link:`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoRef[0].reference}&key=${apiKey}`}
-        console.log(link_photoRef)
-    
-        res.send(link_photoRef.photo_link)
+        let locale = {name: placeData[0].name, ref: placeData[0].photos[0].photo_reference}
+        locale.ref = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${locale.ref}&key=${apiKey}`
+        res.send(locale)
+        // res.send({link_photoRef, name})
     })
 
 })
