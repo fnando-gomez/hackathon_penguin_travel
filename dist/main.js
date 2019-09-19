@@ -1,14 +1,11 @@
 const tempManager = new TempManager()
 const renderer = new Renderer()
 
-//javascript (intro)
-// const inputIntro = document.getElementById("city-input")
-// inputIntro.addEventListener("keyup", function (event) {
-//     if (event.keyCode === 13) {
-//         event.preventDefault()
-//         document.getElementById("button").click()
-//     }
-// })
+M.AutoInit();
+
+$(document).ready(function () {
+    $('.slider').slider();
+});
 
 const loadPage = async function () {
     await tempManager.getDataFromDB()
@@ -23,13 +20,13 @@ const handleSearch = async function () {
     renderer.renderData('#city-template', '.container', [newCity])
 }
 
-$(".container").on("click", "#save", function(){
+$(".container").on("click", "#save", function () {
     let text = $(this).siblings("#cityName").text()
     tempManager.saveCity(text)
     console.log("save(clic):", text)
 })
 
-$(".container").on("click", "#remove", async function(){
+$(".container").on("click", "#remove", async function () {
     let text = $(this).siblings("#cityName").text()
     await tempManager.removeCity(text)
     $(".container").empty()
