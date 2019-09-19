@@ -6,6 +6,8 @@ const Pic = require('../models/Pic')
 const Trip = require('../models/Trip')
 const User = require('../models/User')
 const apiKey = 'AIzaSyDqAA2vF3xOOd_Pcy5SD4Du3MBmbUUAsUo'
+// https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=YOUR_API_KEY
+
 
 
 
@@ -21,11 +23,16 @@ router.get('/place/:placeName',function(req,res){
 
 router.get('/location/:place', function(req,res){
     const getDataPlace = function(place){
-        return `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${place}&inputtype=textquery&fields=photos,formatted_address,name&key=${apiKey}`
+        return `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${place}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=${apiKey}`
     }
     request(getDataPlace(req.params.place), function(error, response, body){
         let placeData = JSON.parse(body).candidates
-        let locale = {name: placeData[0].name, ref: placeData[0].photos[0].photo_reference}
+        let locale = {
+            name: placeData[0].formatted_address, 
+            ref: placeData[0].photos[0].photo_reference,
+            lat: placeData[0].geometry.location.lat,
+            lng: placeData[0].geometry.location.lng
+        }
         locale.ref = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${locale.ref}&key=${apiKey}`
         res.send(locale)
         // res.send({link_photoRef, name})
