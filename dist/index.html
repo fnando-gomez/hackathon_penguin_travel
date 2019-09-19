@@ -27,7 +27,7 @@
                     <i class="material-icons prefix ">map</i>
                     <input id="icon_prefix" type="text" class="validate">
                     <label for="icon_prefix text-lighten-1">City to go</label>
-                    <button class="btn-small waves-effect waves-light light-green" type="submit" name="action">Explore
+                    <button onclick=handleSearch() id="button" class="btn-small waves-effect waves-light light-green" type="submit" name="action">Explore
                         <i class="material-icons right">explore</i>
                     </button>
                 </div>
@@ -42,6 +42,7 @@
                 <div>
                     <!--The div element for the map -->
                     <div id="map"></div>
+
                     <script>
                         // Initialize and add the map
                         function initMap() {
