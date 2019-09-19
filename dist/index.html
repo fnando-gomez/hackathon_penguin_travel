@@ -13,54 +13,123 @@
     <link type="text/css" rel="stylesheet" href="css/style.css" media="screen,projection" />
 </head>
 
-<body onload=>
+<body>
 
-    <div id="index-banner" class="parallax-container">
-        <div class="section no-pad-bot">
-            <div class="container">
-                <br>
-                <h1 class="header center teal-text text-lighten-2">MeeTravels</h1>
-                <div class="row center">
-                    <h5 class="header col s12 light">Meet people while meet the world
-                    </h5>
+    <div class="container" id="greet&search">
+        <div class="row center">
+            <h2 class="header col s12 m10 l10 light-green-text text-lighten-1">MeeTravels</h2>
+            <h6 class="header col s12 m10 l10 light">Meet people while meet the world</h6>
+        </div>
+
+        <div class="user-input">
+            <div class="row">
+                <div class="input-field col s12 light">
+                    <i class="material-icons prefix ">map</i>
+                    <input id="icon_prefix" type="text" class="validate">
+                    <label for="icon_prefix text-lighten-1">City to go</label>
+                    <button class="btn-small waves-effect waves-light light-green" type="submit" name="action">Explore
+                        <i class="material-icons right">explore</i>
+                    </button>
                 </div>
-
-                <div class="user-input">
-                    <div class="row">
-                        <div class="input-field col s12 m6 l6">
-                            <i class="material-icons prefix">map</i>
-                            <input id="icon_prefix" type="text" class="location">
-                            <label for="icon_prefix">City to go</label>
-                            <button class="btn-small waves-effect waves-light" type="submit" name="action">Explore
-                                <i class="material-icons right">explore</i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <br>
-
             </div>
         </div>
-        <div class="parallax"><img src="https://bit.ly/2lXL0Y6" alt="Unsplashed background img 1"></div>
     </div>
 
-    <!-- <div class="container"></div>
-    <script id="city-template" type="text/x-handlebars-template">
-    {{#each Data}}
-    <div id="city">
-        <div id="cityName">{{city}}</div>
-        <img id="img" src={{conditionPic}}>
-    </div>
-    {{/each}}
+    <div class="container" id="map-travelers">
+        <div class="row center">
+            <div class="col s12 m10 l10">
 
-    </script> -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAERpg7YU5cVBhhQvqHwEV5zGDEh1OlpG0&callback=initMap"> </script>`
+                <div>
+                    <!--The div element for the map -->
+                    <div id="map"></div>
+                    <script>
+                        // Initialize and add the map
+                        function initMap() {
+                            // The location of Uluru
+                            var uluru = { lat: -25.344, lng: 131.036 };
+                            // The map, centered at Uluru
+                            var map = new google.maps.Map(
+                                document.getElementById('map'), { zoom: 4, center: uluru });
+                            // The marker, positioned at Uluru
+                            var marker = new google.maps.Marker({ position: uluru, map: map });
+                        }
+                    </script>
+                    <script async defer
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqAA2vF3xOOd_Pcy5SD4Du3MBmbUUAsUo&callback=initMap">
+                        </script>
+                </div>
+
+            </div>
+            <div class="col s8 m2 l2"">
+                <ul class=" collection">
+                <li class="collection-item avatar">
+                    <i class="material-icons circle">directions_walk</i>
+                    <span class="title">Jovan</span>
+                    <p>Mexico <br>
+                        Second Line
+                    </p>
+                    <a href="#!" class="secondary-content"><i class="material-icons">send</i></a>
+                </li>
+                <li class="collection-item avatar">
+                    <i class="material-icons circle green">directions_walk</i>
+                    <span class="title">Tomer</span>
+                    <p>Israel <br>
+                        Second Line
+                    </p>
+                    <a href="#!" class="secondary-content"><i class="material-icons">send</i></a>
+                </li>
+                <li class="collection-item avatar">
+                    <i class="material-icons circle red">directions_walk</i>
+                    <span class="title">Fer</span>
+                    <p>Mexico <br>
+                        Second Line
+                    </p>
+                    <a href="#!" class="secondary-content"><i class="material-icons">send</i></a>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="slider">
+        <div class="container" id="imgs">
+            <div class="row center">
+                <div class="col s12">
+                    <div class="slider">
+                        <ul class="slides">
+                            <li>
+                                <img src="https://lorempixel.com/580/250/nature/1"> <!-- random image -->
+                                <div class="caption center-align">
+                                    <h3>Place 1</h3>
+                                    <h5 class="light grey-text text-lighten-3">Photo 1</h5>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="https://lorempixel.com/580/250/nature/2"> <!-- random image -->
+                                <div class="caption left-align">
+                                    <h3>Place 2</h3>
+                                    <h5 class="light grey-text text-lighten-3">Photo 2</h5>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="https://lorempixel.com/580/250/nature/3"> <!-- random image -->
+                                <div class="caption right-align">
+                                    <h3>Place 3</h3>
+                                    <h5 class="light grey-text text-lighten-3">Photo 3</h5>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     <script src="/jquery/dist/jquery.js"></script>
     <script src="/handlebars/dist/handlebars.js"></script>
-    <script src="Render.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script src="TempManager.js"></script>
+    <script src="Render.js"></script>
+    <script src="routeManager.js"></script>
     <script src="main.js"></script>
 </body>
 
