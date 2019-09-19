@@ -17,28 +17,84 @@
 
     <div class="container" id="greet&search">
         <div class="row center">
-            <h2 class="header col s12 m10 l8 light-green-text text-lighten-1">MeeTravels</h2>
-            <h6 class="header col s12 m10 l8 light">Meet people while meet the world</h6>
+            <h2 class="header col s12 m10 l10 light-green-text text-lighten-1">MeeTravels</h2>
+            <h6 class="header col s12 m10 l10 light">Meet people while meet the world</h6>
         </div>
 
         <div class="user-input">
             <div class="row">
-                <div class="input-field col s12 m10 l8 light">
+                <div class="input-field col s12 light">
                     <i class="material-icons prefix ">map</i>
                     <input id="icon_prefix" type="text" class="validate">
-                    <label for="icon_prefix">City to go</label>
+                    <label for="icon_prefix text-lighten-1">City to go</label>
                     <button class="btn-small waves-effect waves-light light-green" type="submit" name="action">Explore
                         <i class="material-icons right">explore</i>
                     </button>
                 </div>
             </div>
         </div>
-
     </div>
 
-    <div class="container" id="map-img">
+    <div class="container" id="map-travelers">
         <div class="row center">
-            <div class="col s12 m10 l8">
+            <div class="col s12 m10 l10">
+
+                <div>
+                    <!--The div element for the map -->
+                    <div id="map"></div>
+                    <script>
+                        // Initialize and add the map
+                        function initMap() {
+                            // The location of Uluru
+                            var uluru = { lat: -25.344, lng: 131.036 };
+                            // The map, centered at Uluru
+                            var map = new google.maps.Map(
+                                document.getElementById('map'), { zoom: 4, center: uluru });
+                            // The marker, positioned at Uluru
+                            var marker = new google.maps.Marker({ position: uluru, map: map });
+                        }
+                    </script>
+                    <script async defer
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqAA2vF3xOOd_Pcy5SD4Du3MBmbUUAsUo&callback=initMap">
+                        </script>
+                </div>
+
+            </div>
+            <div class="col s8 m2 l2"">
+                <ul class="collection">
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle">directions_walk</i>
+                        <span class="title">Jovan</span>
+                        <p>Mexico <br>
+                            Second Line
+                        </p>
+                        <a href="#!" class="secondary-content"><i class="material-icons">send</i></a>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle green">directions_walk</i>
+                        <span class="title">Tomer</span>
+                        <p>Israel <br>
+                            Second Line
+                        </p>
+                        <a href="#!" class="secondary-content"><i class="material-icons">send</i></a>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle red">directions_walk</i>
+                        <span class="title">Fer</span>
+                        <p>Mexico <br>
+                            Second Line
+                        </p>
+                        <a href="#!" class="secondary-content"><i class="material-icons">send</i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container" id="imgs">
+        <div class="row center">
+            <div class="col s12">
 
                 <div class="slider">
                     <ul class="slides">
@@ -65,62 +121,11 @@
                         </li>
                     </ul>
                 </div>
-
-                <h4 class="header center light-green-text text-lighten-1">My Google Maps Demo</h4>
-                <!--The div element for the map -->
-                <div id="map"></div>
-                <script>
-                    // Initialize and add the map
-                    function initMap() {
-                        // The location of Uluru
-                        var uluru = { lat: -25.344, lng: 131.036 };
-                        // The map, centered at Uluru
-                        var map = new google.maps.Map(
-                            document.getElementById('map'), { zoom: 4, center: uluru });
-                        // The marker, positioned at Uluru
-                        var marker = new google.maps.Marker({ position: uluru, map: map });
-                    }
-                </script>
-                <!--Load the API from the specified URL
-                * The async attribute allows the browser to render the page while the API loads
-                * The key parameter will contain your own API key (which is not needed for this tutorial)
-                * The callback parameter executes the initMap() function
-                -->
-                <script async defer
-                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqAA2vF3xOOd_Pcy5SD4Du3MBmbUUAsUo&callback=initMap">
-                    </script>
-
-                <ul class="collection">
-                    <li class="collection-item avatar">
-                        <i class="material-icons circle">folder</i>
-                        <span class="title">Jovan</span>
-                        <p>Mexico <br>
-                            Second Line
-                        </p>
-                        <a href="#!" class="secondary-content"><i class="material-icons">send</i></a>
-                    </li>
-                    <li class="collection-item avatar">
-                        <i class="material-icons circle green">insert_chart</i>
-                        <span class="title">Tomer</span>
-                        <p>Israel <br>
-                            Second Line
-                        </p>
-                        <a href="#!" class="secondary-content"><i class="material-icons">send</i></a>
-                    </li>
-                    <li class="collection-item avatar">
-                        <i class="material-icons circle red">play_arrow</i>
-                        <span class="title">Fer</span>
-                        <p>Mexico <br>
-                            Second Line
-                        </p>
-                        <a href="#!" class="secondary-content"><i class="material-icons">send</i></a>
-                    </li>
-                </ul>
-
-
             </div>
         </div>
     </div>
+
+
 
     <script src="/jquery/dist/jquery.js"></script>
     <script src="/handlebars/dist/handlebars.js"></script>
