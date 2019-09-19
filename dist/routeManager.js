@@ -17,8 +17,12 @@ class RouteManager {
         if(!validator){
             let newLoc = {...data}
             this.locations.push(newLoc)
+            return newLoc
         }
     }
-} 
+    
+}
 
+        
+    
       
