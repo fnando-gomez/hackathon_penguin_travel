@@ -1,9 +1,10 @@
 class Renderer {
 
-    renderData(tmp, elm, Data) {
+    renderImg(tmp, elm, Data) {
         const source = $(tmp).html()
         const template = Handlebars.compile(source)
-        let newHTML = template({ Data })
+        let newHTML = template( {Data} )
+        $(".pic").empty()
         $(elm).append(newHTML)
     }
 }

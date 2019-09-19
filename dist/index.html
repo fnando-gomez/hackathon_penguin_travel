@@ -39,11 +39,11 @@
         <div class="row center">
             <div class="col s12 m10 l10">
 
-                    <div id="map"></div>
-                    <!-- Replace the value of the key parameter with your own API key. -->
-                    <script
-                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqAA2vF3xOOd_Pcy5SD4Du3MBmbUUAsUo&callback=initMap"
-                        async defer>
+                <div id="map"></div>
+                <!-- Replace the value of the key parameter with your own API key. -->
+                <script
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqAA2vF3xOOd_Pcy5SD4Du3MBmbUUAsUo&callback=initMap"
+                    async defer>
                     </script>
 
             </div>
@@ -78,46 +78,25 @@
         </div>
     </div>
 
-    <div class="slider">
-        <div class="container" id="imgs">
-            <div class="row center">
-                <div class="col s12">
-                    <div class="slider">
-                        <ul class="slides">
-                            <li>
-                                <img src="https://lorempixel.com/580/250/nature/1"> <!-- random image -->
-                                <div class="caption center-align">
-                                    <h3>Place 1</h3>
-                                    <h5 class="light grey-text text-lighten-3">Photo 1</h5>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="https://lorempixel.com/580/250/nature/2"> <!-- random image -->
-                                <div class="caption left-align">
-                                    <h3>Place 2</h3>
-                                    <h5 class="light grey-text text-lighten-3">Photo 2</h5>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="https://lorempixel.com/580/250/nature/3"> <!-- random image -->
-                                <div class="caption right-align">
-                                    <h3>Place 3</h3>
-                                    <h5 class="light grey-text text-lighten-3">Photo 3</h5>
-                                </div>
-                            </li>
-                        </ul>
+    <div class="row center">
+        <div class="col s12 m10 l10"">
+            <div class="container-imgs" id="photos">
+                <script id="images-template" type="text/x-handlebars-template">
+                    <div class="pic">
+                        <img src="{{Data}}">
                     </div>
-                </div>
+                </script>
             </div>
         </div>
+    </div>
 
 
-        <script src="/jquery/dist/jquery.js"></script>
-        <script src="/handlebars/dist/handlebars.js"></script>
-        <script type="text/javascript" src="js/materialize.min.js"></script>
-        <script src="Render.js"></script>
-        <script src="routeManager.js"></script>
-        <script src="main.js"></script>
+    <script src="/jquery/dist/jquery.js"></script>
+    <script src="/handlebars/dist/handlebars.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="Render.js"></script>
+    <script src="routeManager.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
