@@ -33,7 +33,4 @@ router.get('/location/:place', function(req,res){
 
 })
 
-
-
-
 module.exports = router
