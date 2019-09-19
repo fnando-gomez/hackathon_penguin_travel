@@ -7,8 +7,8 @@ const getDistance = function(origin, destination){
     return `https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=${origin}&destinations=${destination}&key=${distanceKey}`
 
 }
-router.get('/place/:placeName',function(req,res){
-    request(getDistance("ciudad panama",req.params.placeName),function(err,response,body){
+router.post('/place/:origin/:destination',function(req,res){
+    request(getDistance(req.params.origin,req.params.destination),function(err,response,body){
         let data = JSON.parse(body)
         res.send(data)
     })
