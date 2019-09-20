@@ -37,6 +37,8 @@ const logIn = function () {
         lat: routeManager.point.lat,
         lng: routeManager.point.lng
     }
+    console.log(user)
+    
     routeManager.signUp(user)
 }
 
@@ -70,10 +72,11 @@ function initMap(lat, lng) {
 }
 const findMe = function () {
     function success(position) {
-        const lat = position.coords.latitude
-        const lng = position.coords.longitude
 
-        initMap(lat, lng)
+        routeManager.point.lat = position.coords.latitude
+        routeManager.point.lng = position.coords.longitude
+
+        initMap(routeManager.point.lat, routeManager.point.lng)
     }
     function geo_error() {
         alert("Sorry, no position available.");

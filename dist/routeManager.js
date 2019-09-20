@@ -20,7 +20,7 @@ class RouteManager {
         return data
     }
     signUp(user){
-        $.post('/newUser',user,()=>console.log("sign up"))
+        $.post('/newUser',user,()=>console.log(user))
     }
     
 }
