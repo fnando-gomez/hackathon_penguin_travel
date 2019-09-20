@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div class="container" id="greet&search">
+    <div class="containerIn" id="greet&search">
         <div class="row center">
             <h2 class="header col s12 m10 l10 light-green-text text-lighten-1">MeeTravels</h2>
             <h6 class="header col s12 m10 l10 light">Meet people while meet the world</h6>
@@ -23,23 +23,28 @@
             <div class="row center">
                 <div class="col s12 m10 l10">
                     <div>
+
                         <ul id="slide-out" class="sidenav">
                             <div class="col s11">
                                 <div class="divider"></div>
                                 <li><i class="material-icons">account_box</i></li>
                                 <li><input id="icon_prefixN" type="text" class="validate" placeholder="User Name"></li>
-                                <li><input id="icon_prefixP" type="password" pattern=".{6,}" class="validate" placeholder="Password"></li>
-                                <li><button onclick=logIn() id="buttonL" class="btn-small waves-effect waves-light light-green"
-                                        type="submit" name="action">Submit</button></li>
+                                <li><input id="icon_prefixP" type="password" pattern=".{6,}" class="validate"
+                                        placeholder="Password"></li>
+                                <li><button onclick=logIn() id="buttonL"
+                                        class="btn-small waves-effect waves-light light-green" type="submit"
+                                        name="action">Submit</button></li>
                                 <li>
                                     <div class="divider"></div>
                                 </li>
                                 <li><a href="#!">Sing Up</a></li>
                             </div>
                         </ul>
-                        <a href="#" data-target="slide-out" class="sidenav-trigger"><i
-                                class="material-icons">account_circle</i> Log in</a>
+
+                        <a href="#" data-target="slide-out" class="sidenav-trigger">
+                            <i class="material-icons">account_circle</i>Log in</a>
                     </div>
+
                     <div class="input-field col s12 light">
                         <i class="material-icons prefix ">map</i>
                         <input id="icon_prefixI" type="text" class="validate" placeholder="City to go">
@@ -48,6 +53,7 @@
                             <i class="material-icons right">explore</i>
                         </button>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -63,23 +69,26 @@
                     </script>
             </div>
             <div class="col s12 m3 l3"">
-                    <div>
+            <div class="container-trvs" id="travelers">
+
+            <script id="travelers-template" type="text/x-handlebars-template">
                 <ul class=" collection">
-                <li class="collection-item avatar">
-                    <a href="#!"><i class="material-icons circle">directions_walk</i>Traveler 1</a>
-                </li>
-                <li class="collection-item avatar">
-                    <a href="#!"><i class="material-icons circle">directions_walk</i>Traveler 2</a>
-                </li>
-                <li class="collection-item avatar">
-                    <a href="#!"><i class="material-icons circle">directions_walk</i>Traveler 3</a>
-                </li>
+                    {{#each trvs}}
+                    <li class="collection-item avatar">
+                        <a href="#!"><i class="material-icons circle">directions_walk</i>{{username}}</a>
+                    </li>
+                    {{/each}}
                 </ul>
+            </script>
+
             </div>
             <div class=" container-imgs" id="photos">
                 <script id="images-template" type="text/x-handlebars-template">
                                 <div class="pic">
-                                    <img src="{{Data}}" width="100%" height="150">
+                                    <img src="{{Data.ref}}" width="100%" height="150">
+                                    <div class="caption center-align">
+                                        <h5 class="light grey-text text-lighten-3">{{Data.name}}</h5>
+                                    </div>
                                 </div>
                         </script>
             </div>
