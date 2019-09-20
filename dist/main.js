@@ -28,9 +28,13 @@ const handleSearch = async function () {
 const logIn = async function () {
     const username = $("#icon_prefixN").val()
     const password = $("#icon_prefixP").val()    
-    console.log(username, password)
-    findMe()
-    routeManager.signUp({username, password})
+    user = {
+        firstName: username,
+        password: password,
+        lat: routeManager.point.lat,
+        lng: routeManager.point.lng
+    }
+    routeManager.signUp(user)
 }
 
 function initMap(lat,lng) { 
@@ -41,10 +45,10 @@ function initMap(lat,lng) {
 }
 const findMe = function () {
     function success(position) {
-        const lat = position.coords.latitude
-        const lng = position.coords.longitude
+        routeManager.point.lat = position.coords.latitude
+        routeManager.point.lng = position.coords.longitude
 
-        initMap(lat, lng)
+        initMap(routeManager.point.lat,routeManager.point.lng)
     }
     function geo_error() {
         alert("Sorry, no position available.");
@@ -62,13 +66,3 @@ setTimeout(() => {
     findMe()
 }, timeout=1000);
 
-//userSignUp
-// $(".sign-up").on("click",()=>{
-//     renderer.renderLogin()
-//     let user={
-//         firstName: $(".fname").val(),
-//         lastName: $(".lname").val(),
-//         lat
-//     }
-
-// })

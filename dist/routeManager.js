@@ -2,6 +2,7 @@ class RouteManager {
     constructor(){
         this.locations = []
         this.userData=[]
+        this.point = {lat:"",lng:""}
     }
     
     async getLocation(location){
@@ -18,7 +19,7 @@ class RouteManager {
         this.userData = data
     }
     signUp(user){
-        $.post('/newUser',user)
+        $.post('/newUser',user,()=>console.log("sign up"))
     }
     
 }

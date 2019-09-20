@@ -10,7 +10,7 @@ const PORT = 4000
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended : false}))
 
-mongoose.connect('mongodb://localhost/meeTravelDB',{useNewUrlParser:true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost/meeTravelDB',{useNewUrlParser:true},()=>console.log("mongood"))
 
 app.use(express.static(path.join(__dirname,'./dist')))
 app.use(express.static(path.join(__dirname,'./node_modules')))
