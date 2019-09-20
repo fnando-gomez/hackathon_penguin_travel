@@ -3,32 +3,38 @@ const renderer = new Renderer()
 let user = {}
 
 
-M.AutoInit();
+M.AutoInit()
 
 $(document).ready(function () {
-    $('.slider').slider();
-});
+    $('.sidenav').sidenav()
+})
 
-
-const inputIntro = document.getElementById("icon_prefix")
+const inputIntro = document.getElementById("icon_prefixI")
 inputIntro.addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {
         event.preventDefault()
-        document.getElementById("button").click()
+        document.getElementById("buttonI").click()
     }
 })
 
 const handleSearch = async function () {
-    let input = $("#icon_prefix").val()
+    let input = $("#icon_prefixI").val()
     let obj = await routeManager.getLocation(input)
     initMap(obj.lat, obj.lng)
-    console.log("handleSearch:\n", obj.ref)
     renderer.renderImg('#images-template', '.container-imgs', obj.ref)
+}
+
+
+const logIn = async function () {
+    const username = $("#icon_prefixN").val()
+    const password = $("#icon_prefixP").val()    
+    console.log(username, password)
+    findMe()
+    routeManager.signUp({username, password})
 }
 
 function initMap(lat,lng) { 
     let point ={lat,lng}
-    debugger
     let map = new google.maps.Map(document.getElementById('map'), {center: point,zoom: 14})
     let marker = new google.maps.Marker({position:point, map: map})
 
@@ -54,7 +60,7 @@ const findMe = function () {
 } 
 setTimeout(() => {
     findMe()
-}, timeout=3000);
+}, timeout=1000);
 
 //userSignUp
 // $(".sign-up").on("click",()=>{

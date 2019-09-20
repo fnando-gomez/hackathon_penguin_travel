@@ -38,20 +38,22 @@ router.get('/location/:place', function(req,res){
     })
 
 })
-router.get(`users`,function(req,res){
+router.get(`/users`,function(req,res){
     User.find({}).exec((err,data)=>{
         res.send(data)
     })
 })
 router.post('/newUser',function(req,res){
+    console.log(req.body)
     let user = new User(req.body)
-    let validator = User.findOne({name: user.name})
+    console.log(user)
+    let validator = User.findOne({firstName: user.name})
     if(!validator){
         User.save()
     }
     res.end()
 })
-router.get(`coords/:latlng`,(req,res)=>{
+router.get(`/coords/:latlng`,(req,res)=>{
     const getPlace = function(latlng){
         return `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlng}&key=AIzaSyDqAA2vF3xOOd_Pcy5SD4Du3MBmbUUAsUo`
     }
