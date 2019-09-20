@@ -6,15 +6,13 @@ const Pic = require('../models/Pic')
 const Trip = require('../models/Trip')
 const User = require('../models/User')
 const apiKey = 'AIzaSyDqAA2vF3xOOd_Pcy5SD4Du3MBmbUUAsUo'
-//https://maps.googleapis.com/maps/api/geocode/json?latlng=${{lat,lng}}&key=AIzaSyDqAA2vF3xOOd_Pcy5SD4Du3MBmbUUAsUo
-
 
 
 router.get('/place/:placeName', function (req, res) {
     const getDistance = function (origin, destination) {
         return `https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=${origin}&destinations=${destination}&key=${apiKey}`
     }
-
+    
     request(getDistance("ciudad panama", req.params.placeName), function (err, response, body) {
         let data = JSON.parse(body)
         res.send(data)
@@ -39,16 +37,19 @@ router.get('/location/:place', function (req, res) {
     })
 
 })
+  
 router.get(`/users`, function (req, res) {
     User.find({}).exec((err, data) => {
         res.send(data)
     })
 })
+  
 router.post('/newUser', function (req, res) {
     let user = new User(req.body)
     user.save()
     res.end()
 })
+  
 router.get(`/coords/:latlng`, (req, res) => {
     const getPlace = function (latlng) {
         return `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlng}&key=AIzaSyDqAA2vF3xOOd_Pcy5SD4Du3MBmbUUAsUo`
@@ -63,8 +64,5 @@ router.get(`/coords/:latlng`, (req, res) => {
     })
 
 })
-
-
-
 
 module.exports = router
