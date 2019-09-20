@@ -1,5 +1,7 @@
 const routeManager = new RouteManager()
 const renderer = new Renderer()
+let user = {}
+
 
 M.AutoInit();
 
@@ -24,11 +26,11 @@ const handleSearch = async function () {
     renderer.renderImg('#images-template', '.container-imgs', obj.ref)
 }
 
-function initMap(lat, lng) {
-    let point = { lat, lng }
-    let map = new google.maps.Map(document.getElementById('map'), { center: point, zoom: 14 })
-    let marker = new google.maps.Marker({ position: point, map: map })
-
+function initMap(lat,lng) { 
+    let point ={lat,lng}
+    debugger
+    let map = new google.maps.Map(document.getElementById('map'), {center: point,zoom: 14})
+    let marker = new google.maps.Marker({position:point, map: map})
 
 }
 const findMe = function () {
@@ -40,17 +42,27 @@ const findMe = function () {
     }
     function geo_error() {
         alert("Sorry, no position available.");
-    }
+      }
+      
+      var geo_options = {
+        enableHighAccuracy: true, 
+        maximumAge        : 30000, 
+        timeout           : 27000
+      }
+    navigator.geolocation.getCurrentPosition(success,geo_error,geo_options)
 
-    var geo_options = {
-        enableHighAccuracy: true,
-        maximumAge: 30000,
-        timeout: 3000
-    }
-    navigator.geolocation.getCurrentPosition(success, geo_error, geo_options)
-
-}
+} 
 setTimeout(() => {
     findMe()
-}, timeout = 1000);
+}, timeout=3000);
 
+//userSignUp
+// $(".sign-up").on("click",()=>{
+//     renderer.renderLogin()
+//     let user={
+//         firstName: $(".fname").val(),
+//         lastName: $(".lname").val(),
+//         lat
+//     }
+
+// })
