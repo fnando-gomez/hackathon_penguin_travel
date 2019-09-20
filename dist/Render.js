@@ -7,6 +7,11 @@ class Renderer {
         $(".pic").empty()
         $(elm).append(newHTML)
     }
+    renderLI(){
+        console.log("renderLI")
+        $(".sidenav-trigger").empty()
+    }
 }
+
 
 

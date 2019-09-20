@@ -18,9 +18,7 @@ class RouteManager {
         this.userData = data
     }
     signUp(user){
-        $.post('/newUser',user,()=>{
-            console.log(post)
-        })
+        $.post('/newUser',user)
     }
     
 }
