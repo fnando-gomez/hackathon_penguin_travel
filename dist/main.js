@@ -3,26 +3,24 @@ const renderer = new Renderer()
 let user = {}
 
 
-M.AutoInit();
+M.AutoInit()
 
 $(document).ready(function () {
-    $('.slider').slider();
-});
+    $('.sidenav').sidenav()
+})
 
-
-const inputIntro = document.getElementById("icon_prefix")
+const inputIntro = document.getElementById("icon_prefixI")
 inputIntro.addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {
         event.preventDefault()
-        document.getElementById("button").click()
+        document.getElementById("buttonI").click()
     }
 })
 
 const handleSearch = async function () {
-    let input = $("#icon_prefix").val()
+    let input = $("#icon_prefixI").val()
     let obj = await routeManager.getLocation(input)
     initMap(obj.lat, obj.lng)
-    console.log("handleSearch:\n", obj.ref)
     renderer.renderImg('#images-template', '.container-imgs', obj.ref)
 }
 
