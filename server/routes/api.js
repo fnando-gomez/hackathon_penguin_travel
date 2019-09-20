@@ -44,13 +44,8 @@ router.get(`/users`,function(req,res){
     })
 })
 router.post('/newUser',function(req,res){
-    console.log(req.body)
     let user = new User(req.body)
-    console.log(user)
-    let validator = User.findOne({firstName: user.name})
-    if(!validator){
-        User.save()
-    }
+    user.save()
     res.end()
 })
 router.get(`/coords/:latlng`,(req,res)=>{

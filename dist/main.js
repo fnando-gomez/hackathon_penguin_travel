@@ -62,13 +62,3 @@ setTimeout(() => {
     findMe()
 }, timeout=1000);
 
-//userSignUp
-// $(".sign-up").on("click",()=>{
-//     renderer.renderLogin()
-//     let user={
-//         firstName: $(".fname").val(),
-//         lastName: $(".lname").val(),
-//         lat
-//     }
-
-// })
