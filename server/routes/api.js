@@ -36,16 +36,15 @@ router.get('/location/:place', function (req, res) {
         }
         else {
             let placeData = JSON.parse(body).candidates[0]
-            let locale = {
+            let locale = new Location ({
                 name: placeData.name,
                 address: placeData.formatted_address,
                 ref: placeData.photos[0].photo_reference,
                 lat: placeData.geometry.location.lat,
                 lng: placeData.geometry.location.lng
-            }
+            })
             locale.ref = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${locale.ref}&key=${apiKey}`
-            let locationTest = new Location({name: locale.name, latitude: locale.lat, longitude: locale.lng})
-            locationTest.save()
+            locale.save()
             res.send(locale)
         }
     })
@@ -59,9 +58,27 @@ router.get(`/users`, function (req, res) {
 })
 
 router.post('/newUser', function (req, res) {
-    let user = new User(req.body)
-    user.save()
-    res.end()
+    request(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${req.body.lat},${req.body.lng}&key=AIzaSyDqAA2vF3xOOd_Pcy5SD4Du3MBmbUUAsUo`, function (err, response, body) {
+        console.log(body)
+        let data = JSON.parse(body).results[0]
+        let place = new Location({
+            placeId: data.place_id,
+            name: data.formatted_address,
+            lat: req.body.lat,
+            lng: req.body.lng
+        })
+        let user = new User({
+            
+            username: req.body.username,
+            password: req.body.password,
+            location: {}
+        })
+        place.save()
+        user.save()
+        user.location = place
+        res.send(data)
+    })
+    
 })
 
 router.get(`/coords/:latlng`, (req, res) => {
