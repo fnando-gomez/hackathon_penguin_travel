@@ -6,8 +6,7 @@ const Pic = require('../models/Pic')
 const Trip = require('../models/Trip')
 const User = require('../models/User')
 const apiKey = 'AIzaSyDqAA2vF3xOOd_Pcy5SD4Du3MBmbUUAsUo'
-// https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=YOUR_API_KEY
-
+//https://maps.googleapis.com/maps/api/geocode/json?latlng=${{lat,lng}}&key=AIzaSyDqAA2vF3xOOd_Pcy5SD4Du3MBmbUUAsUo
 
 
 
@@ -51,6 +50,20 @@ router.post('/newUser',function(req,res){
         User.save()
     }
     res.end()
+})
+router.get(`coords/:latlng`,(req,res)=>{
+    const getPlace = function(latlng){
+        return `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlng}&key=AIzaSyDqAA2vF3xOOd_Pcy5SD4Du3MBmbUUAsUo`
+    }
+    request(getPlace(req.params.latlng),function(err,response,body){
+        let data = JSON.parse(body)
+        let relevant = {
+            name:"",
+
+        }
+        res.send(data)
+    })
+
 })
 
 

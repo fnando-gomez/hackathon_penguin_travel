@@ -1,5 +1,7 @@
 const routeManager = new RouteManager()
 const renderer = new Renderer()
+let user = {}
+
 
 M.AutoInit();
 
@@ -24,8 +26,9 @@ const handleSearch = async function () {
     renderer.renderImg('#images-template', '.container-imgs', obj.ref)
 }
 
-function initMap(lat,lng) {
-    routeManager.user. = {lat,lng}
+function initMap(lat,lng) { 
+    let point ={lat,lng}
+    debugger
     let map = new google.maps.Map(document.getElementById('map'), {center: point,zoom: 14})
     let marker = new google.maps.Marker({position:point, map: map})
 
@@ -52,3 +55,14 @@ const findMe = function () {
 setTimeout(() => {
     findMe()
 }, timeout=3000);
+
+//userSignUp
+// $(".sign-up").on("click",()=>{
+//     renderer.renderLogin()
+//     let user={
+//         firstName: $(".fname").val(),
+//         lastName: $(".lname").val(),
+//         lat
+//     }
+
+// })

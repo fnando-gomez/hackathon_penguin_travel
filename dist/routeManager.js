@@ -17,8 +17,10 @@ class RouteManager {
         let data = await $.get(`/users`)
         this.userData = data
     }
-    signUp(){
-        
+    signUp(user){
+        $.post('/newUser',user,()=>{
+            console.log(post)
+        })
     }
     
 }
