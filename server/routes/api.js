@@ -39,6 +39,19 @@ router.get('/location/:place', function(req,res){
     })
 
 })
+router.get(`users`,function(req,res){
+    User.find({}).exec((err,data)=>{
+        res.send(data)
+    })
+})
+router.post('/newUser',function(req,res){
+    let user = new User(req.body)
+    let validator = User.findOne({name: user.name})
+    if(!validator){
+        User.save()
+    }
+    res.end()
+})
 
 
 

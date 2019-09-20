@@ -24,14 +24,13 @@ const handleSearch = async function () {
 }
 
 function initMap(lat,lng) {
-    let point = {lat,lng}
+    routeManager.user. = {lat,lng}
     let map = new google.maps.Map(document.getElementById('map'), {center: point,zoom: 14})
     let marker = new google.maps.Marker({position:point, map: map})
 
   
 }
 const findMe= function(){
-    const mapLink = $("#map")
     function success(position){
         const lat = position.coords.latitude
         const lng = position.coords.longitude
@@ -45,12 +44,11 @@ const findMe= function(){
       var geo_options = {
         enableHighAccuracy: true, 
         maximumAge        : 30000, 
-        timeout           : 3000
+        timeout           : 27000
       }
     navigator.geolocation.getCurrentPosition(success,geo_error,geo_options)
 
 } 
 setTimeout(() => {
     findMe()
-}, timeout=1000);
-
+}, timeout=3000);
