@@ -6,10 +6,11 @@ const Pic = require('../models/Pic')
 const Trip = require('../models/Trip')
 const User = require('../models/User')
 const apiKey = 'AIzaSyDqAA2vF3xOOd_Pcy5SD4Du3MBmbUUAsUo'
-//https://maps.googleapis.com/maps/api/geocode/json?latlng=${{lat,lng}}&key=AIzaSyDqAA2vF3xOOd_Pcy5SD4Du3MBmbUUAsUo
 
 
-
+const getPlace = function(lat,lng){
+    return `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&result_type=locality&key=AIzaSyDqAA2vF3xOOd_Pcy5SD4Du3MBmbUUAsUo`
+}
 router.get('/place/:placeName',function(req,res){
     const getDistance = function(origin, destination){
         return `https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=${origin}&destinations=${destination}&key=${apiKey}`}
@@ -44,20 +45,25 @@ router.get(`/users`,function(req,res){
     })
 })
 router.post('/newUser',function(req,res){
-    let user = new User(req.body)
-    user.save()
-    res.end()
+    request(getPlace(req.body.lat,req.body.lng),function(err,response,body){
+        console.log(req.body.latlng)
+        let data = JSON.parse(body).results[0]
+        let place =new Location ({
+            placeId:data.place_id,
+            name:data.formatted_address,
+            latlng: req.body.latlng
+        })
+        let user = new User({
+            firstName: req.body.name,
+            password: req.body.password,
+            location: {}
+        })
+        place.save()
+        user.save()
+        user.location = place
+        res.send(data)
 })
 router.get(`/coords/:latlng`,(req,res)=>{
-    const getPlace = function(latlng){
-        return `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlng}&key=AIzaSyDqAA2vF3xOOd_Pcy5SD4Du3MBmbUUAsUo`
-    }
-    request(getPlace(req.params.latlng),function(err,response,body){
-        let data = JSON.parse(body)
-        let relevant = {
-            name:"",
-
-        }
         res.send(data)
     })
 
