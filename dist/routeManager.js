@@ -16,6 +16,7 @@ class RouteManager {
     async getUserData(){
         let data = await $.get(`/users`)
         this.userData = data
+        return data
     }
     signUp(user){
         $.post('/newUser',user)
