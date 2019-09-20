@@ -31,7 +31,13 @@ const logIn = function () {
     const password = $("#icon_prefixP").val()
     let logInFlag = true
     renderer.renderLI(logInFlag)
-    routeManager.signUp({ username, password })
+    user = {
+        username: username,
+        password: password,
+        lat: routeManager.point.lat,
+        lng: routeManager.point.lng
+    }
+    routeManager.signUp(user)
 }
 
 function initMap(lat, lng) {
